@@ -1,0 +1,6 @@
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\bin\Debug\SemesterClassLibrary.dll
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\bin\Debug\SemesterClassLibrary.pdb
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\obj\Debug\SemesterClassLibrary.csproj.AssemblyReference.cache
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\obj\Debug\SemesterClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\obj\Debug\SemesterClassLibrary.dll
+C:\Users\shiva\OneDrive\Desktop\ST10084788_PROG6212_POE_PART_2\Source Code\Class Library (DLL)\SemesterClassLibrary\obj\Debug\SemesterClassLibrary.pdb

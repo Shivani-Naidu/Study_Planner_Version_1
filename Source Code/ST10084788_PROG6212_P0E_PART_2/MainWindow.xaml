@@ -1,0 +1,428 @@
+﻿<Window x:Class="ST10084788_PROG6212_P0E_PART_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST10084788_PROG6212_P0E_PART_2"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="750" Width="1020"
+        WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+        <!--Toogle button style template-->
+        <ImageBrush x:Key= "tb_mouse_over"
+                    ImageSource="Icons/mouse.png"/>
+
+        <!--Text Font Style-->
+        <Style x:Key="font_style"
+               TargetType="TextBlock">
+
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="FontSize"
+                    Value="18"/>
+
+        </Style>
+
+        <!--Properties of toggle button-->
+        <Style x:Key= "tb_style"
+               TargetType="{x:Type ToggleButton}" >
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType= "{x:Type ToggleButton}" >
+
+                        <Border x:Name ="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="true" >
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+                            </Trigger>
+
+
+                            <Trigger Property="IsChecked" 
+                                     Value="true">
+
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{StaticResource tb_mouse_over}"/>
+
+                            </Trigger>
+
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <!--Tooltip Style-->
+
+        <Style TargetType="ToolTip" 
+               x:Key="tt_style">
+
+            <Setter Property="Placement"
+                    Value="Right"/>
+            <Setter Property="Height"
+                    Value="40"/>
+            <Setter Property="Width"
+                    Value="100"/>
+            <Setter Property="Margin"
+                    Value="20,0,0,0"/>
+            <Setter Property="Background"
+                    Value="#4A5668"/>
+            <Setter Property="BorderBrush"
+                    Value="Transparent"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="FontSize"
+                    Value="16"/>
+            <Setter Property="PlacementRectangle"
+                    Value="60,0,0,0"/>
+            <Setter Property="HorizontalOffset"
+                    Value="15"/>
+            <Setter Property="VerticalOffset"
+                    Value="6"/>
+            <Setter Property="HasDropShadow"
+                    Value="True"/>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+        </Style>
+
+    </Window.Resources>
+
+    <!--Main grid of main window-->
+    <Grid Background="pink">
+
+        <!--Frame to display all pages in the application-->
+        <Frame Width="1020" Height="750" x:Name="FrameMain" Background="Black" NavigationUIVisibility="Hidden" Loaded="FrameMain_Loaded" />
+
+
+        <!--Create navigation panel-->
+        <!--Start of naviagtion panel-->
+        <Grid x:Name="nav_panel"
+                  HorizontalAlignment="Left"
+                  Width="85"
+                  Background="SteelBlue">
+
+
+            <!--Create stack panel-->
+            <!--Start of stack panel-->
+            <StackPanel x:Name="st_panel" Margin="0,0,10,0" >
+
+                <!--Grid for toggle buttons-->
+                <!--Start of grid for menu toggle button-->
+                <Grid Height="90" Width="156" HorizontalAlignment="Left">
+
+
+                    <!--Textblock for title text-->
+                    <TextBlock
+                            Grid.Column="0"
+                            Text="M E N U"
+                            Foreground="Black"
+                            FontSize="18"
+                            Background="Transparent"
+                            Style= "{StaticResource font_style}" 
+                            Margin="80,0,0,0" RenderTransformOrigin="0.466,0.5">
+                           
+                             <!--Shadow effect for 'menu' text-->
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="10"
+                                                  ShadowDepth="3"
+                                                  Direction="-90"
+                                                  Color="DarkGray"/>
+                        </TextBlock.Effect>
+
+                    </TextBlock>
+
+                    <!--Toggle button for menu icon-->
+                    <!--Start of menu toggle button-->
+                    <ToggleButton x:Name="Tg_Btn"
+                                      Grid.Column="0"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Height="70"
+                                      Width="61"
+                                      BorderThickness="0"
+                                      Style="{StaticResource tb_style}" >
+
+                        <!--Background for menu toggle button-->
+                        <ToggleButton.Background>
+                            <ImageBrush ImageSource="Icons/menu.png" 
+                                            Stretch="Fill"/>
+                        </ToggleButton.Background>
+
+
+                        <!--Start of menu toggle button trigger-->
+                        <ToggleButton.Triggers>
+
+                            <!--What happens if the toggle button is unchecked-->
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="HideStackPanel">
+
+                                        <DoubleAnimation Storyboard.TargetName="nav_panel"
+                                                             Storyboard.TargetProperty="Width"
+                                                             BeginTime="0:0:0"
+                                                             From="160" To="85"
+                                                             Duration="0:0:0.2">
+                                        </DoubleAnimation>
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                            <!--What happens if the toggle button is checked-->
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="ShowStackPanel">
+
+                                        <DoubleAnimation Storyboard.TargetName="nav_panel"
+                                                             Storyboard.TargetProperty="Width"
+                                                             BeginTime="0:0:0"
+                                                             From="80" To="160"
+                                                             Duration="0:0:0.2" >
+
+                                        </DoubleAnimation>
+
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+
+
+                        </ToggleButton.Triggers>
+                        <!--End of menu toggle button trigger-->
+
+                    </ToggleButton>
+                    <!--End of menu toggle button-->
+
+                </Grid>
+
+                <!--List view of menu items-->
+                <ListView x:Name="LV"
+                              Background="Transparent"
+                              BorderBrush="Transparent"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="631" Width="162" MouseEnter="LV_MouseEnter">
+
+                    <!--First menu item- Home item-->
+                    <ListViewItem x:Name="LV1" Margin="0,0,0,15"   HorizontalAlignment="Left" Height="200" Selected="LV1_Selected"  >
+
+                        <ListViewItem.ToolTip>
+                            <!--Tool tip is used to display a simple text to the user when they hover over the Home item-->
+
+                            <ToolTip x:Name="tt_Home"
+                                         Content="Home"/>
+
+                        </ListViewItem.ToolTip>
+
+                        <StackPanel Orientation="Horizontal"
+                                        Width="146" 
+                                        Height="85"
+                                        HorizontalAlignment="Center">
+
+                            <Image Source="Icons/home.png"
+                                       Stretch="Fill"
+                                       Height="74" Width="66" />
+
+                            <TextBlock FontSize="11"
+                                           Foreground="Black"
+                                           Style="{StaticResource font_style}"
+                                           Height="40" 
+                                           Width="87"
+                                           ><Run Text="   "/><Run Text="  "/><Run Language="en-za" Text="H O M E"
+                                                                                  /></TextBlock>
+
+                        </StackPanel>
+
+                    </ListViewItem>
+                    <!--End of irst menu item- Home item-->
+
+
+                    <!--Expense semester item-->
+                    <ListViewItem x:Name="LV2" Margin="0,0,0,15"   Height="200" Width="157" Selected="LV2_Selected" >
+
+                        <ListViewItem.ToolTip>
+                            <!--Tool tip is used to display a simple text to the user when they hover over the Expense item-->
+
+                            <ToolTip x:Name="tt_Semester"
+                                         Content="Semester Information"/>
+
+                        </ListViewItem.ToolTip>
+
+
+                        <StackPanel Orientation="Horizontal"
+                                        Width="165" Height="80">
+
+                            <Image Source="Icons/books.png"
+                                       Stretch="Fill"
+                                       Height="64" Width="63" />
+
+                            <TextBlock FontSize="11"
+                                           Foreground="Black"
+                                           
+                                           RenderTransformOrigin="0.656,-0.272" 
+                                           Height="48" Width="91"
+                                           ><Run Text="  "/><Run Text=" "/><Run Text="S E M E S T E R "/><LineBreak/><Run Text="   "/><Run Language="en-za" Text="&amp; M O D U L E"/><LineBreak/><Run Language="en-za" Text="   "/><Run Text="I N F O"/></TextBlock>
+
+                        </StackPanel>
+
+
+
+                    </ListViewItem>
+                    <!--End of semester menu item-->
+
+
+
+                    <!--Exit menu item-->
+                    <ListViewItem x:Name="LV3"
+                                      Margin="0,0,0,15"   Height="180" Selected="LV3_Selected">
+
+                        <ListViewItem.ToolTip>
+                            <!--Tool tip is used to display a simple text to the user when they hover over the Exit item-->
+
+                            <ToolTip x:Name="tt_Exit"
+                                         Content="Exit Application"/>
+
+                        </ListViewItem.ToolTip>
+
+                        <StackPanel Orientation="Horizontal"
+                                        Width="174" Height="89">
+
+                            <Image Source="Icons/study.png"
+                                       Stretch="Fill"
+                                       Height="63" Width="63" />
+
+                            <TextBlock FontSize="11"
+                                           Foreground="Black"
+                                           RenderTransformOrigin="0.656,-0.272" 
+                                           Height="40" 
+                                           Width="98"
+                                           ><Run Text=" "/><Run Text="    "/><Run Text="S "/><Run Language="en-za" Text="E L F "/><LineBreak/><Run Language="en-za" Text="     S T U D Y"/><Run Text=" "/></TextBlock>
+
+                        </StackPanel>
+
+
+
+
+                    </ListViewItem>
+                    <!--End of Exit menu item-->
+
+                    
+                    
+                    <!--End of irst menu item- Home item-->
+
+
+                    <!--List view template-->
+                    <ListView.ItemContainerStyle>
+
+                        <Style TargetType="ListViewItem">
+
+                            <Setter Property="Template" >
+
+                                <Setter.Value>
+
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}" >
+
+                                        <Border x:Name="Bd"
+                                                    Height="75"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    SnapsToDevicePixels="True" >
+
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+
+                                            <MultiTrigger>
+
+                                                <MultiTrigger.Conditions>
+
+                                                    <Condition Property="IsMouseOver" Value="True" />
+
+                                                </MultiTrigger.Conditions>
+
+                                                <Setter Property="Background"
+                                                            TargetName="Bd"
+                                                            Value="#404D58" />
+
+                                                <Setter Property="BorderBrush"
+                                                            TargetName="Bd"
+                                                            Value="#404D58" />
+
+                                            </MultiTrigger>
+
+                                        </ControlTemplate.Triggers>
+
+                                    </ControlTemplate>
+
+                                </Setter.Value>
+
+                            </Setter>
+
+                        </Style>
+
+                    </ListView.ItemContainerStyle>
+
+                </ListView>
+                <!--End of list view-->
+
+            </StackPanel>
+            <!--End of stack panel-->
+
+        </Grid>
+        <!--End of navigation panel-->
+    </Grid>
+
+
+</Window>
